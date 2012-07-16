@@ -2,3 +2,9 @@ DetachedThemes
 =========
 
 This project is a development library for the Android platform. The purpose of this library is to detach themes and resources from application and use them as separate application.
+
+Credits and License
+-------------------
+
+Igor Garin (igarin@mera.ru)
+
