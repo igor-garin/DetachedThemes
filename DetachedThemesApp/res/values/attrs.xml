@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="custButtonStyle" format="reference" />
+
+    <declare-styleable name="CustButton">
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.mera.detachedthemesapp"
+      android:versionCode="1"
+      android:versionName="1.0">
+    <!--
+        Sets the application's user-readable label
+     -->
+    <application android:label="@string/app_name">
+        <!--
+            Sets the activity's name and label
+         -->
+        <activity android:name="com.mera.detachedthemesapp.MainActivity" 
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden">
+            <!--
+                This activity responds to MAIN and LAUNCHER intents
+             -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+    <!--
+        Requires a minimum platform version of Android-3 (SDK 1.5) to run
+    -->
+    <uses-sdk android:minSdkVersion="3"/>
+
+</manifest>

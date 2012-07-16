@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/custom_button_bg</item>
+        <item name="android:textColor">@color/themeText</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    
+    <style name="ButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/button_bg</item>
+        <item name="android:textColor">@color/themeText</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:padding">15dp</item>
+    </style>
+
+    <style name="WindowTitleStyle">
+        <item name="android:singleLine">false</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.WindowTitle</item>
+        <item name="android:shadowColor">#BBffffff</item>
+        <item name="android:shadowRadius">4</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/themeText</item>
+    </style>
+
+    <style name="ListViewStyle" parent="@android:style/Widget.ListView">
+        <item name="android:listSelector">@drawable/list_selector_background</item>
+        <item name="android:cacheColorHint">?android:attr/colorBackgroundCacheHint</item>
+    </style>
+
+    <style name="SpinnerStyle" parent="@android:style/Widget.Spinner">
+        <item name="android:background">@drawable/btn_dropdown</item>
+    </style>
+
+    <style name="TextViewStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/themeText</item>
+    </style>
+
+    <style name="EditTextStyle" parent="@android:style/Widget.EditText">
+        <item name="android:background">@drawable/edit_text</item>
+    </style>
+
+</resources>
