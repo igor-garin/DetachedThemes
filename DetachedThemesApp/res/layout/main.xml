@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"    android:layout_height="fill_parent"
+    android:layout_width="match_parent"    android:layout_height="match_parent"
     android:orientation="vertical" >
 
     <com.mera.detachedthemesapp.custom.CustButton
@@ -24,7 +24,14 @@
     <Spinner
         android:id="@+id/spinner1"        android:layout_width="match_parent"
         android:layout_height="wrap_content"        android:layout_margin="10dp" />
-    <ListView
-        android:id="@+id/listView1"        android:layout_width="match_parent"
-        android:layout_height="wrap_content"        android:layout_margin="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"        android:layout_height="match_parent"
+        android:gravity="bottom"        android:orientation="vertical" >
+        <Button
+        	android:id="@+id/switch_button"        android:layout_width="match_parent"
+        	android:layout_height="wrap_content"        android:layout_margin="10dp"
+        	android:text="Switch theme" />
+    </LinearLayout>
+
 </LinearLayout>

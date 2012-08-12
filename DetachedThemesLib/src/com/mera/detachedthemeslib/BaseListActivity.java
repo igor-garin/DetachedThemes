@@ -1,11 +1,11 @@
 package com.mera.detachedthemeslib;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.res.Resources;
 import android.os.Bundle;
 
-public abstract class BaseActivity extends Activity {
-
+public abstract class BaseListActivity extends ListActivity {
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		ActivityManager.setThemeForActivity(this);

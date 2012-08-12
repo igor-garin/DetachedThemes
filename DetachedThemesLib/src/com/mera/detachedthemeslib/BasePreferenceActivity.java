@@ -1,10 +1,10 @@
 package com.mera.detachedthemeslib;
 
-import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 
-public abstract class BaseActivity extends Activity {
+public abstract class BasePreferenceActivity extends PreferenceActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

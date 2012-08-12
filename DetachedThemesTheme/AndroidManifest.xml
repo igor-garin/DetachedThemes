@@ -6,7 +6,7 @@
     <!--
         Sets the application's user-readable label
      -->
-    <application android:label="@string/app_name" android:theme="@style/NewTheme">
+    <application android:label="@string/app_name" android:theme="@style/DetachedTheme">
         <activity android:name="com.mera.detachedthemesapp.theme.newtheme.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

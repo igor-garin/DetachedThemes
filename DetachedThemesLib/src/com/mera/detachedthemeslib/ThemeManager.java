@@ -8,13 +8,25 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
+import android.util.Log;
 
 public class ThemeManager {
 	
-	private static Configuration mConfig;
+	private static ThemesConfiguration mConfig = null;
 	
-	static void init(Context ctx, Configuration cfg) {
-		mConfig = cfg;
+	static int getMainThemeId(Context context) {
+	    int id_st = -1;
+        try {
+            id_st = context.getResources()
+                .getIdentifier("MainTheme", "style",context.getPackageName());
+        } catch(NullPointerException ex) {
+            Log.e("ThemeManager", ex.getMessage());
+            throw new IllegalArgumentException("There is no default theme with name \"MainTheme\"");
+        }
+	    return id_st;
+	}
+	
+	static void init(Context ctx) {
 		if(isThemeDetached(ctx)) {
 
 			final PackageManager pm = ctx.getPackageManager(); 
@@ -28,16 +40,17 @@ public class ThemeManager {
 	            }
 	        }
 	        if(packageDeleted) {
-	        	setTheme(ctx, getThemes(ctx).get(0));
+	            setInnerTheme(ctx, getMainThemeId(ctx));
 	        }
 		}
 	}
 	
-	public static List<Theme> getThemes(Context ctx) {
+	public static List<Theme> getThemes(Context ctx, ThemesConfiguration cfg) {
+	    mConfig = cfg;
         List<Theme> packagesList = new ArrayList<Theme>();
         final PackageManager pm = ctx.getPackageManager(); 
         
-        packagesList.addAll(mConfig.getInternalThemes());
+        packagesList.addAll(mConfig.getInternalThemes(ctx));
         
         int id = 8003;
         
@@ -45,7 +58,7 @@ public class ThemeManager {
         
         for( PackageInfo pi : packages) {
             String pnm  = pi.applicationInfo.packageName;
-            if(pnm.startsWith(mConfig.getPackagePrefixName())) {
+            if(pnm.startsWith(mConfig.getPackagePrefixName(ctx)) && (!ctx.getPackageName().equals(pnm))) {
                 try {
                     Resources res = pm.getResourcesForApplication (pnm);
                     Theme theme =  new Theme(true);
@@ -64,22 +77,17 @@ public class ThemeManager {
         return packagesList;
 	}
 	
-	
-	public static void setTheme(Context ctx, int id) {
-		for(Theme theme : getThemes(ctx)) {
-			if(theme.mId == id) {
-				setTheme(ctx, theme);
-			}
-		}
+	private static void setInnerTheme(Context ctx, int id) {
+        PreferenceManager.setThemeType(ctx, false);
+        PreferenceManager.setThemeId(ctx, id);
 	}
 	
-	private static void setTheme(Context ctx, Theme theme) {
+	public static void setTheme(Context ctx, Theme theme) {
 		if(theme.mDetached) {
 			PreferenceManager.setThemeType(ctx, true);
 			PreferenceManager.setThemePackage(ctx, theme.mPackageName);
 		} else {
-			PreferenceManager.setThemeType(ctx, false);
-			PreferenceManager.setThemeId(ctx, theme.mId);
+		    setInnerTheme(ctx, theme.mId);
 		}
 	}
 	
@@ -88,9 +96,9 @@ public class ThemeManager {
 	}
 	
 	static int getThemeId(Context context) {
-		return PreferenceManager.getThemeId(context, mConfig.getDefaultThemeId());
+		return PreferenceManager.getThemeId(context, getMainThemeId(context));
 	}
-
+	
 	static Resources.Theme getTheme(Context ctx) {
 		final PackageManager pm = ctx.getPackageManager();
 		Resources res = null;
@@ -98,8 +106,14 @@ public class ThemeManager {
             res = pm.getResourcesForApplication (PreferenceManager.getThemePackage(ctx));
             Resources.Theme rs = res.newTheme();
             
-            int id_st = res
-                    .getIdentifier(mConfig.getNameForDetachedTheme(), "style",PreferenceManager.getThemePackage(ctx));
+            int id_st = 0;
+            try {
+                //TODO: mConfig.getNameForDetachedTheme()
+            	id_st = res
+                    .getIdentifier(/*mConfig.getNameForDetachedTheme()*/"DetachedTheme", "style",PreferenceManager.getThemePackage(ctx));
+            } catch(NullPointerException ex) {
+            	Log.e("ThemeManager", ex.getMessage());
+            }
             rs.applyStyle(id_st, true);
             return rs;
             

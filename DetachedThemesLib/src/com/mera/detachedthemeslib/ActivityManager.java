@@ -6,8 +6,8 @@ import android.content.res.Resources;
 
 class ActivityManager {
 
-	static void setThemeForActivity(Activity act, Configuration cfg) {
-		ThemeManager.init(act, cfg);
+	static void setThemeForActivity(Activity act) {
+		ThemeManager.init(act);
 		if(!ThemeManager.isThemeDetached(act)) {
 			act.setTheme(ThemeManager.getThemeId(act));
 		}
